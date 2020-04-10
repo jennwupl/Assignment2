@@ -205,14 +205,14 @@ X = scaler.transform(df_new)
 
 # Training the model
 
-# In[44]:
+# In[25]:
 
 
 from sklearn.cluster import KMeans
 # use the elbow method
 
 # calculate distortion for a range of number of cluster
-distortions = []
+inertia = []
 for i in range(1, 11):
     km = KMeans(
         n_clusters=i, init='random',
@@ -220,12 +220,12 @@ for i in range(1, 11):
         tol=1e-04, random_state=0
     )
     km.fit(X1)
-    distortions.append(km.inertia_)
+    inertia.append(km.inertia_)
 
 # plot
-plt.plot(range(1, 11), distortions, marker='o')
+plt.plot(range(1, 11), inertia, marker='o')
 plt.xlabel('Number of clusters')
-plt.ylabel('Distortion')
+plt.ylabel('Inertia')
 plt.show()
 
 
